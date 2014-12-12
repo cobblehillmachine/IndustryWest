@@ -4,6 +4,7 @@
 # Magento Gitignore
 # Author: Luis E. Tineo<luis@codegrease.com>
 # Version: 1.3.1
+*.htaccess
 *.lt
 .buildpath
 .cache

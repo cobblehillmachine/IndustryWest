@@ -207,3 +207,8 @@
 ## http://developer.yahoo.com/performance/rules.html#etags
 
     #FileETag none
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /home/sdeploy/.htpasswd
+require valid-user
