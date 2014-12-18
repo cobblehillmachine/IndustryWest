@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+ 	<default>
+        <reference name="head">
+        	<!--<action method="addJs"><script>productposition/adminhtml/draggable.js</script></action>-->
+			<action method="addCss"><name>productposition.css</name></action>
+        </reference>
+    </default>
+		
+ 
+    <productposition_adminhtml_productposition_index>
+        <reference name="content">
+            <block type="productposition/adminhtml_productposition" name="productposition" />
+        </reference>
+    </productposition_adminhtml_productposition_index>
+</layout>

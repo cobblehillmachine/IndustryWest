@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magedev_Productposition>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magedev_Productposition>
+    </modules>
+</config>

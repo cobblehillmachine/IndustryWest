@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magedev_Productposition>
+            <version>4.1</version>
+        </Magedev_Productposition>
+    </modules>
+
+ 	<adminhtml>
+		<layout>
+			<updates>
+				<productposition>
+					<file>productposition.xml</file>
+				</productposition>
+			</updates>
+		</layout>
+    </adminhtml>   
+
+	<global>
+		<!-- Controllers rewrite -->
+        <rewrite>
+			<!--<magedev_productposition_catalog_category_save>
+                <from><![CDATA[#^/admin/catalog_category/save/#]]></from>
+                <to>/productposition/catalog_category/save/</to>
+            </magedev_productposition_catalog_category_save>-->
+
+			<magedev_productposition_catalog_category_updateProductPositions>
+                <from><![CDATA[#^/admin/catalog_category/updateProductPositions/#]]></from>
+                <to>/productposition/catalog_category/updateProductPositions/</to>
+            </magedev_productposition_catalog_category_updateProductPositions>
+			
+			 <magedev_productposition_catalog_category_enhancedgrid>
+                <from><![CDATA[#^/admin/catalog_category/enhancedgrid/#]]></from>
+                <to>/productposition/catalog_category/enhancedgrid/</to>
+            </magedev_productposition_catalog_category_enhancedgrid>
+            <magedev_productposition_catalog_category_merchandising>
+                <from><![CDATA[#^/admin/catalog_category/updateProduct/#]]></from>
+                <to>/productposition/catalog_category/updateProduct/</to>
+            </magedev_productposition_catalog_category_merchandising>
+			
+			
+        </rewrite>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+				
+				<catalog_category_tabs>Magedev_Productposition_Block_Catalog_Category_Tabs</catalog_category_tabs>
+<!--<catalog_category_tab_product>Magedev_Productposition_Block_Catalog_Category_Tab_Product</catalog_category_tab_product>-->
+				<catalog_category_tab_enahancedproducts>Magedev_Productposition_Block_Catalog_Category_Tab_Enahancedproducts</catalog_category_tab_enahancedproducts>
+				</rewrite>
+            </adminhtml>
+            <magedev_productposition>
+                <class>Magedev_Productposition_Block</class>
+            </magedev_productposition>
+        </blocks>
+        <helpers>
+            <productposition>
+                <class>Magedev_Productposition_Helper</class>
+            </productposition>
+        </helpers>
+        <resources>
+            <productposition_setup>
+                <setup>
+                    <module>Magedev_Productposition</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </productposition_setup>
+            <productposition_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </productposition_write>
+            <productposition_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </productposition_read>
+        </resources>
+	</global>
+    <admin>
+        <routers>
+            <magedev_productposition>
+                <use>admin</use>
+                <args>
+                    <module>Magedev_Productposition</module>
+                    <frontName>productposition</frontName>
+                </args>
+            </magedev_productposition>
+        </routers>
+    </admin>
+    <stores>
+        <admin>
+            <design>
+                <package>
+                    <name>default</name>
+                </package>
+            </design>
+        </admin>
+    </stores> 
+</config>
