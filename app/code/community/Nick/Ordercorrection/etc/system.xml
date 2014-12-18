@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <ordercorrection translate="label" module="ordercorrection">
+            <label>Order Correction</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>5000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>                    
+            <groups>
+            	<general translate="label">
+                    <label>Order Correction Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+					<fields>
+					     <enable_invoice>
+					        <label>Enable Invoice Delete Button</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>2</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>Add Invoice Delete Button To Order View</comment>
+					    </enable_invoice>
+						 <enable_creditmemo>
+					        <label>Enable Credit Memo Delete Button</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>3</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>Add Credit Memo Delete Button To Order View</comment>
+					    </enable_creditmemo>
+						 <enable_shipment>
+					        <label>Enable Shipment Delete Button</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>4</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>Add Shipment Delete Button To Order View</comment>
+					    </enable_shipment>
+						<enable_reset>
+					        <label>Enable Reset Button</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>5</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>This will delete all items associated with this order and reset it back to pending payment</comment>
+					    </enable_reset>
+						<enable_delete>
+					        <label>Enable Delete Order Button</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>5</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>This will delete the entire order</comment>
+					    </enable_delete> 
+						<enable_comments>
+					        <label>Enable Comments</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>6</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>This will add a comment to the order as to who deleted an item</comment>
+					    </enable_comments>
+						<enable_roles>
+					        <label>Enable User Role Based Access</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+					        <sort_order>7</sort_order>
+					        <show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>Enabling this will show a list a roles you wish to give access to buttons</comment>
+					    </enable_roles>
+						<roles>
+					        <label>Select User Roles</label>
+                            <frontend_type>multiselect</frontend_type>
+							<source_model>ordercorrection/system_config_source_roles</source_model>
+					        <sort_order>8</sort_order>
+  							<depends><enable_roles>1</enable_roles></depends>
+							<show_in_default>1</show_in_default><show_in_default>1</show_in_default>
+					        <show_in_website>0</show_in_website>
+					        <show_in_store>0</show_in_store>                    
+					        <comment>User roles that have access to delete and reset buttons</comment>
+					    </roles>
+					</fields>
+                </general>
+            </groups>
+        </ordercorrection>
+    </sections>     
+</config>

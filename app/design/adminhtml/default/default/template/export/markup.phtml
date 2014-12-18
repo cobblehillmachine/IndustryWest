@@ -1,0 +1,45 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?=$this->__('Order Export')?></h3></td>
+            <td class="a-right">
+                <button onclick="window.location='<?=Mage::getUrl("export")?>';" class="scalable go" type="button"><span><?=$this->__('Go back to order export')?></span></button>
+                <!--<button onclick="window.location='<?=Mage::getUrl("admin/admin/system_config")?>';" class="scalable go" type="button"><span><?=$this->__('Go to settings section')?></span></button>-->
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <form id="edit_form" name="edit_form" method="post" action="">
+        <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+        <div class="entry-edit-head">
+          <h4 class="icon-head head-edit-form fieldset-legend"><?=$this->__('XSL Markup Tester')?></h4>
+        </div>
+        <fieldset id="my-fieldset">
+          <a href="<?=$this->getUrl('*/*/getXMLMarkup')?>" target="_blank">Click here to open up the XML markup being processed</a><br/><br/>
+          Input XSL: (without <?=htmlentities('<files><file></file></files>')?>, only XSL)<br/>
+          <textarea name="input" id="input" cols="175" rows="15" style="width:auto;height:auto;"></textarea>
+          <br/>
+          <input type="checkbox" id="indent">&nbsp;Indent code (only good for XML probably)<br/>
+          <button onclick="submitXSL()" class="scalable save" type="button"><span><?=$this->__('Submit XSL')?></span></button>
+          <br/><br/>
+          Output:<br/>
+          <textarea name="output" id="output" cols="175" rows="13" style="width:auto;height:auto;"></textarea>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+function submitXSL() {
+  var req = new Ajax.Request(
+      "<?=$this->getUrl('*/*/post')?>", { 
+      method: 'POST',
+      parameters: 'input='+encodeURIComponent($F('input'))+'&indent='+$F('indent'),
+      onComplete: function(transport){
+        if (transport && transport.responseText) {
+          $('output').value = transport.responseText;
+        }
+      }
+    }
+  );
+}
+</script>

@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RichardMason_Profile>
+            <version>1.10</version>
+        </RichardMason_Profile>
+    </modules>
+    <frontend>
+        <routers>
+            <profile>
+                <use>standard</use>
+                <args>
+                    <module>RichardMason_Profile</module>
+                    <frontName>press</frontName>
+                </args>
+            </profile>
+        </routers>
+        <layout>
+            <updates>
+                <profile>
+                    <file>profile.xml</file>
+                </profile>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<profile>
+				<use>admin</use>
+				<args>
+					<module>RichardMason_Profile</module>
+					<frontName>profile</frontName>
+				</args>
+			</profile>
+			<adminhtml>
+				<args>
+					<modules>
+					 	<RichardMason_Profile_Override before="Mage_Adminhtml">RichardMason_Profile_Override_Admin</RichardMason_Profile_Override>
+					</modules>
+				</args>
+			</adminhtml>
+
+			
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<cms>
+			<!--	<children>
+					<news module="profile">
+						<title>News</title>
+						<sort_order>60</sort_order>
+						<action>profile/adminhtml_profile/news</action>
+					</news>
+				</children>
+				<children>
+					<testimonials module="profile">
+						<title>Testimonials</title>
+						<sort_order>61</sort_order>
+						<action>profile/adminhtml_profile/testimonials</action>
+					</testimonials>
+				</children>
+				
+				<children>
+					<pressreleases module="profile">
+						<title>Press Releases</title>
+						<sort_order>62</sort_order>
+						<action>profile/adminhtml_profile/pressreleases</action>
+					</pressreleases>
+				</children>
+				-->
+				<children>
+					<pressarticles module="profile">
+						<title>Press Articles</title>
+						<sort_order>63</sort_order>
+						<action>profile/adminhtml_profile/pressarticles</action>
+					</pressarticles>
+				</children>
+			</cms>
+		</menu>
+        <layout>
+            <updates>
+                <profile>
+                    <file>profile.xml</file>
+                </profile>
+            </updates>
+        </layout>
+	 <acl>
+                <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                           <cms>
+                            <children>
+                           <!--     <news>
+                                    <title>News</title>
+                                    <sort_order>30</sort_order>
+                                </news>
+                                <testimonials>
+                                    <title>Testimonials</title>
+                                    <sort_order>40</sort_order>
+                                </testimonials>
+                                <pressreleases>
+                                    <title>Press releases</title>
+                                    <sort_order>50</sort_order>
+                                </pressreleases>  -->
+                                <pressarticles>
+                                    <title>Press articles</title>
+                                    <sort_order>60</sort_order>
+                                </pressarticles>
+                            </children>
+                        </cms>
+                    </children>
+                </admin>
+           </resources>
+        </acl>
+
+    </adminhtml>   
+    <global>
+        <models>
+            <profile>
+                <class>RichardMason_Profile_Model</class>
+                <resourceModel>profile_mysql4</resourceModel>
+            </profile>
+            <profile_mysql4>
+                <class>RichardMason_Profile_Model_Mysql4</class>
+                <entities>
+                    <profile>
+                        <table>profile</table>
+                    </profile>
+                    <profile_store>
+                        <table>profile_store</table>
+                    </profile_store>					
+                </entities>
+            </profile_mysql4>
+        </models>
+        <resources>
+            <profile_setup>
+                <setup>
+                    <module>RichardMason_Profile</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </profile_setup>
+            <profile_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </profile_write>
+            <profile_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </profile_read>
+        </resources>
+        <blocks>
+            <profile>
+                <class>RichardMason_Profile_Block</class>
+            </profile>
+        </blocks>
+        <helpers>
+            <profile>
+                <class>RichardMason_Profile_Helper</class>
+            </profile>
+        </helpers>
+    </global>
+</config>

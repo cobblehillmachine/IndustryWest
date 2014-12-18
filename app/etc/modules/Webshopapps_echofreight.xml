@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Webshopapps_Echofreight>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Webshopapps_Echofreight>
+	</modules>
+
+</config>

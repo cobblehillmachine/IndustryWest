@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Webshopapps_Wsaupsfreight>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+				<Mage_Shipping />
+				<Webshopapps_Wsacommon />
+			</depends>
+		</Webshopapps_Wsaupsfreight>
+	</modules>
+
+</config>

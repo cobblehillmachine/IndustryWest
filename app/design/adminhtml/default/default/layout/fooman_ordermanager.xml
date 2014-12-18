@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>fooman/adminhtml/grid.js</script></action>
+        </reference>
+    </default>
+    <adminhtml_sales_order_index>
+        <update handle="fooman_ordermanager_extra_columns" />
+    </adminhtml_sales_order_index>
+    <adminhtml_sales_order_grid>
+        <update handle="fooman_ordermanager_extra_columns" />
+    </adminhtml_sales_order_grid>
+    <fooman_ordermanager_extra_columns>
+        <reference name="sales_order.grid">
+            <action method="addColumnAfter">
+                <columnId>fooman_carrier</columnId>
+                <arguments module="ordermanager" translate="header">
+                    <header>Carrier</header>
+                    <renderer>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_TrackingCarrierInput</renderer>
+                    <type>text</type>
+                    <sortable>false</sortable>
+                    <filter>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_TrackingCarrierInput</filter>
+                </arguments>
+                <after>entity_id</after>
+            </action>
+            <action method="addColumnAfter">
+                <columnId>fooman_tracking</columnId>
+                <arguments module="ordermanager" translate="header">
+                    <header>Tracking #</header>
+                    <renderer>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_TrackingNumberInput</renderer>
+                    <type>text</type>
+                    <sortable>false</sortable>
+                    <filter>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_TrackingNumberInput</filter>
+                </arguments>
+                <after>fooman_carrier</after>
+            </action>
+			<action method="addColumnAfter">
+                <columnId>fooman_tracking</columnId>
+                <arguments module="ordermanager" translate="header">
+                    <header>Payment Details</header>
+                    <renderer>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_PaymentDetails</renderer>
+                    <type>text</type>
+                    <sortable>false</sortable>
+                    <filter>Fooman_OrderManager_Block_Adminhtml_Widget_Grid_Column_Renderer_PaymentDetails</filter>
+                </arguments>
+                <after>entity_id</after>
+            </action>			
+        </reference>
+    </fooman_ordermanager_extra_columns>
+</layout>

@@ -1,0 +1,30 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3 class="icon-head head-tax-rate-importExport"><?php echo Mage::helper('ordercorrection')->__('Restore Order From Quote') ?></h3></td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <div class="box-left">
+        <form id="restore_form" action="<?php echo $this->getUrl('*/*/restorePost') ?>" method="post" enctype="multipart/form-data">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('ordercorrection')->__('Restore Order From A Quote') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo Mage::helper('ordercorrection')->__('Input Order Number To Restore From Quote') ?></legend>
+                <input type="text" name="restore_number" class="input-file required-entry"/>
+                <?php echo $this->getButtonHtml('Restore Order', "this.form.submit()") ?>
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+            var importForm = new varienForm('import_form');
+        </script>
+     Input an increment order number to restore an order from a quote. 
+    </div>
+    <div class="box-right">
+             
+    </div>
+    <div class="clear"></div>
+</div>

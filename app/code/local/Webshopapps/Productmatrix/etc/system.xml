@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_Productmatrix
+ * @copyright  Copyright (c) 2008 Auction Maid (http://www.webshopapps.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Karen Baker <enquiries@webshopapps.com>
+*/
+-->
+<config>
+  <sections>
+    <carriers translate="label" module="shipping">
+      <label>Shipping Methods</label>
+      <tab>sales</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>320</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <productmatrix translate="label">
+          <comment><![CDATA[<strong><a href="http://wiki.webshopapps.com/extensions/product-matrix/" target="_blank">ProductMatrix Help and Examples</a></strong>]]></comment>
+          <label>Webshopapps Product Matrix Rates</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </active>
+            <serial translate="label">
+			  <label>Serial Key</label>
+			  <frontend_type>obscure</frontend_type>
+              <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+			  <sort_order>11</sort_order>
+			  <show_in_default>1</show_in_default>
+			  <show_in_website>1</show_in_website>
+			  <show_in_store>1</show_in_store>
+			  <tooltip>
+			  	If this field is blank, the extension will NOT work.
+			  </tooltip>
+			  <comment>
+				  <![CDATA[If this is empty then extension will not work.
+				  <br/>See this <a href="http://wiki.webshopapps.com/installation/serial-keys">wiki</a> article for more info
+				  ]]>
+			  </comment>
+			</serial>
+            <title translate="label">
+              <label>Title</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>15</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+             <!--<shipping_heading translate="label">
+	                    <label>Productmatrix Configuration</label>
+	                    <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+	                    <sort_order>18</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+            </shipping_heading>-->
+            <star_include_all translate="label">
+              <label>Apply Shipping Group '*' to All Items in Cart</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>
+              	<![CDATA[When set to yes, * in shipping group column in csv file will mean 
+              	applies to ALL items including items in a shipping group ]]>              		
+              </comment>
+            </star_include_all>  
+            <condition_name translate="label">
+              <label>Totalling Algorithm</label>
+              <frontend_type>select</frontend_type>
+              <source_model>productmatrix_adminhtml/system_config_source_shipping_productmatrix</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>Most people use Per Package or Highest Price totalling</comment>
+            </condition_name>
+              <import translate="label">
+              <label>Import</label>
+              <frontend_type>import</frontend_type>
+              <backend_model>productmatrix_adminhtml/system_config_backend_shipping_productmatrix</backend_model>
+              <sort_order>40</sort_order>
+              <show_in_default>0</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </import>
+            <min_shipping_cost translate="label">
+              <label>Minimum Shipping Cost</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>49</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>Leave empty to ignore</comment>
+            </min_shipping_cost> 
+ 			<max_shipping_cost translate="label">
+              <label>Maximum Shipping Cost</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+               <comment>Leave empty to ignore</comment>
+            </max_shipping_cost>   
+          	<postcode_filter translate="label">
+              <label>Postcode Filtering</label>
+              <frontend_type>select</frontend_type>
+              <source_model>productmatrix/carrier_source_postcode</source_model>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>Select the <![CDATA[<a href="http://wiki.webshopapps.com/configuration-1/csvs/postcode-filtering" target="_blank">postcode matching algorithm</a>]]></comment>
+            </postcode_filter>
+          <!--  <advanced_heading translate="label">
+	                    <label>Advanced Settings</label>
+	                    <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+	                    <sort_order>70</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+            </advanced_heading>-->
+              <free_method translate="label">
+                  <label>Free Method</label>
+                  <frontend_type>multiselect</frontend_type>
+                  <frontend_class>free-method</frontend_class>
+                  <source_model>productmatrix/carrier_source_freemethod</source_model>
+                  <sort_order>75</sort_order>
+                  <show_in_default>1</show_in_default>
+                  <show_in_website>1</show_in_website>
+                  <show_in_store>0</show_in_store>
+                  <comment>
+			  		For Magento 1.4.1.2 and above. Shipping method to apply free shipping rules on.
+			  	</comment>
+              </free_method>
+	   		<free_shipping_text translate="label">
+			  <label>Free Shipping Promotion Text</label>
+			  <frontend_type>text</frontend_type>
+			  <sort_order>80</sort_order>
+			  <comment>
+			  	For Magento 1.4.1.1 and below. Text to show when promotion gives free shipping on cart.
+			  </comment>
+			  <show_in_default>1</show_in_default>
+			  <show_in_website>1</show_in_website>
+			  <show_in_store>1</show_in_store>
+            </free_shipping_text>
+   	   		<zero_shipping_text translate="label">
+			  <label>Zero Cost Shipping Text</label>
+			  <frontend_type>text</frontend_type>
+			  <tooltip>
+			  	What to show the shipping as when the price of shipping is 0. I.e "FREE SHIPPING"
+			  </tooltip>
+			  <sort_order>90</sort_order>
+			  <show_in_default>1</show_in_default>
+			  <show_in_website>1</show_in_website>
+			  <show_in_store>1</show_in_store>
+            </zero_shipping_text>
+           <parent_group translate="label">
+              <label>Which Shipping Group?</label>
+              <frontend_type>select</frontend_type>
+              <source_model>productmatrix/carrier_source_parentgroup</source_model>
+              <tooltip>
+	              Parent is the actual configurable/bundle product. 
+	              The child is the associatated product/s or the configurable options.
+              </tooltip>
+              <sort_order>100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </parent_group>            
+            <ship_options  translate="label">
+				<label>Advanced Options</label>
+				<frontend_type>multiselect</frontend_type>
+   				<source_model>productmatrix/carrier_source_shipoptions</source_model>
+				<sort_order>120</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>0</show_in_store>
+				<comment>If unsure set to N/A. These are only used in rare scenarios</comment>
+				<tooltip>If unsure set to N/A. These are only used in rare scenarios</tooltip>
+			</ship_options>
+			<!-- <heading_std_ship translate="label">
+			                <label>Standard Shipping</label>
+			                <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+			                <sort_order>130</sort_order>
+			                <show_in_default>1</show_in_default>
+			                <show_in_website>1</show_in_website>
+            </heading_std_ship>-->
+            <handling_type translate="label">
+              <label>Calculate Handling Fee</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingType</source_model>
+              <sort_order>150</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </handling_type>
+            <handling_fee translate="label">
+              <label>Handling Fee</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>160</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </handling_fee>      
+            <sallowspecific translate="label">
+              <label>Ship to Applicable Countries</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>200</sort_order>
+              <frontend_class>shipping-applicable-country</frontend_class>
+              <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </sallowspecific>
+            <specificcountry translate="label">
+              <label>Ship to Specific Countries</label>
+              <frontend_type>multiselect</frontend_type>
+              <sort_order>210</sort_order>
+              <source_model>adminhtml/system_config_source_country</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </specificcountry>
+            <showmethod translate="label">
+              <label>Show Method if Not Applicable</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>220</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <frontend_class>shipping-skip-hide</frontend_class>           
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </showmethod>
+            <specificerrmsg translate="label">
+              <label>Displayed Error Message</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>230</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </specificerrmsg>
+            <sort_order translate="label">
+              <label>Sort Order</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>500</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </sort_order>                                  
+           </fields>
+        </productmatrix>
+      </groups>
+    </carriers>
+  </sections>
+</config>

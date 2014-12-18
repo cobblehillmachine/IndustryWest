@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Wholesale_Registration>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </Wholesale_Registration>
+  </modules>
+</config>

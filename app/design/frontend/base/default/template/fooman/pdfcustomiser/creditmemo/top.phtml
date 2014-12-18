@@ -1,0 +1,44 @@
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <?php if($this->getPdfHelper()->getPdfLogoPlacement() == 'auto-right' || $this->getPdfHelper()->getPdfLogoPlacement() == 'no-scaling-right'):?>
+            <td valign="top">&nbsp;<!--space for logo--></td>
+            <td <?php echo $this->getPdfHelper()->getImageHeight()?'height="'.$this->getPdfHelper()->getImageHeight().'mm"':''?> valign="top" width="50%" style="font-weight:bold; font-size:<?php echo $this->getPdfHelper()->getPdfFontsize('large')?>"><?php echo $this->getPdfHelper()->getPdfTitle()?></td>
+        <?php else :?>
+            <td <?php echo $this->getPdfHelper()->getImageHeight()?'height="'.$this->getPdfHelper()->getImageHeight().'mm"':''?> valign="top" width="50%" style="font-weight:bold; font-size:<?php echo $this->getPdfHelper()->getPdfFontsize('large')?>"><?php echo $this->getPdfHelper()->getPdfTitle()?></td>
+            <td valign="top">&nbsp;<!--space for logo--></td>
+        <?php endif; ?>
+    </tr>
+    <tr>
+        <td valign="top" width="50%"><?php echo $this->getPdfHelper()->getNumberText()?>: {{var sales_object.increment_id}}<br/>
+            <?php echo $this->getPdfHelper()->getPutOrderId() ? Mage::helper('sales')->__('Order #').': {{var order.increment_id}} <br/>' : '' ?>
+            <!--<?php echo Mage::helper('catalog')->__('Order Date')?>: <?php echo $this->getPdfHelper()->getOrderDate()?><br/>-->
+            <?php echo Mage::helper('catalog')->__('Date')?>: <?php echo $this->getPdfHelper()->getDate()?>
+            <?php echo $this->getPdfHelper()->getTopAdditional() ? $this->getPdfHelper()->getTopAdditional() : '' ?>
+        </td>
+        <td valign="top"><?php echo nl2br($this->getPdfHelper()->getPdfOwnerAddresss())?></td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+        <?php if($this->getPdfHelper()->getPdfAddresses() == 'both'): ?>
+            <td valign="top" width="50%"><?php echo Mage::helper('sales')->__('SOLD TO:')?><br/>{{var billing_address}}</td>
+            <td valign="top"><?php echo Mage::helper('sales')->__('SHIP TO:')?><br/>{{var shipping_address}}</td>
+        <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'shipping'): ?>
+            <td valign="top" colspan="2">{{var shipping_address}}</td>            
+        <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'billing'): ?>
+            <td valign="top" colspan="2">{{var billing_address}}</td>             
+        <?php endif;?>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+    </tr>    
+    <tr>
+        <td valign="top" width="50%"><strong><?php echo Mage::helper('sales')->__('Payment Method')?></strong></td>
+        <td valign="top"><strong><?php echo Mage::helper('sales')->__('Shipping Method')?></strong></td>        
+    </tr>    
+    <tr>
+        <td valign="top" width="50%">{{var payment}}</td>
+        <td valign="top">{{var shipping}}</td>        
+    </tr> 
+</table>

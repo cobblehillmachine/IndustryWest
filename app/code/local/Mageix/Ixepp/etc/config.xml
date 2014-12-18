@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mageix LLC
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to Mageix LLC's  End User License Agreement
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://mageix.com/index.php/license-guide/
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to webmaster@mageix.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+
+ *
+ * @category	Mageix
+ * @package 	Mageix_Ixepp
+ * @copyright   Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @license	http://mageix.com/index.php/license-guide/  End User License Agreement
+ */
+
+/*
+ * Magento Mageix ICBA Module
+ *
+ * @category   Checkout & Payments
+ * @package	Mageix_Ixepp
+ * @copyright  Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @designer & author  Brian Graham
+ * @co-author Rahul Sharma
+  *@licence 	http://mageix.com/index.php/license-guide/ 
+ */ -->
+<config>
+    <modules>
+        <Mageix_Ixepp>
+            <version>0.1.0</version>
+        </Mageix_Ixepp>
+    </modules>
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<ixepp>
+											<title>IXEPP - All</title>
+										</ixepp>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+    <frontend>
+        <routers>
+            <ixepp>
+                <use>standard</use>
+                <args>
+                    <module>Mageix_Ixepp</module>
+                    <frontName>ixepp</frontName>
+                </args>
+            </ixepp>
+        </routers>
+        <layout>
+            <updates>
+                <ixepp>
+                    <file>ixepp.xml</file>
+                </ixepp>
+            </updates>
+        </layout>
+    </frontend> 
+    <global>
+		<rewrite>                  
+				
+		</rewrite>
+        <models>
+			<sales>
+			  <rewrite>
+				<service_quote>Mageix_Ixepp_Model_Service_Quote</service_quote>
+			  </rewrite>
+			</sales>
+            <ixepp>
+                <class>Mageix_Ixepp_Model</class>
+                <resourceModel>ixepp_mysql4</resourceModel>
+            </ixepp>
+            <ixepp_mysql4>
+                <class>Mageix_Ixepp_Model_Mysql4</class>
+                <entities>
+                    <ixepp>
+                        <table>ixepp</table>
+                    </ixepp>
+                </entities>
+            </ixepp_mysql4>
+        </models>
+        <resources>
+            <ixepp_setup>
+                <setup>
+                    <module>Mageix_Ixepp</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ixepp_setup>
+            <ixepp_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ixepp_write>
+            <ixepp_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ixepp_read>
+        </resources>
+		<fieldsets>
+            <customer_account>
+                <prefix>
+                    <to_order>customer_prefix</to_order>
+                </prefix>
+                <firstname>
+                    <to_order>customer_firstname</to_order>
+                </firstname>
+                <middlename>
+                    <to_order>customer_middlename</to_order>
+                </middlename>
+                <lastname>
+                    <to_order>customer_lastname</to_order>
+                </lastname>
+                <suffix>
+                    <to_order>customer_suffix</to_order>
+                </suffix>
+                <email>
+                    <to_order>customer_email</to_order>
+                </email>
+                <group_id>
+                    <to_order>customer_group_id</to_order>
+                </group_id>
+                <tax_class_id>
+                    <to_order>customer_tax_class_id</to_order>
+                </tax_class_id>
+            </customer_account>
+            <ixepp_popup_billing>
+                <prefix>
+                    <to_customer>*</to_customer>
+                </prefix>
+                <firstname>
+                    <to_customer>*</to_customer>
+                </firstname>
+                <middlename>
+                    <to_customer>*</to_customer>
+                </middlename>
+                <lastname>
+                    <to_customer>*</to_customer>
+                </lastname>
+                <suffix>
+                    <to_customer>*</to_customer>
+                </suffix>
+                <email>
+                    <to_customer>*</to_customer>
+                </email>
+                <customer_dob>
+                    <to_customer>dob</to_customer>
+                </customer_dob>
+                <customer_taxvat>
+                    <to_customer>taxvat</to_customer>
+                </customer_taxvat>
+                <customer_gender>
+                    <to_customer>gender</to_customer>
+                </customer_gender>
+            </ixepp_popup_billing>
+            <ixepp_popup_quote>
+                <customer_prefix>
+                    <to_customer>prefix</to_customer>
+                </customer_prefix>
+                <customer_firstname>
+                    <to_customer>firstname</to_customer>
+                </customer_firstname>
+                <customer_middlename>
+                    <to_customer>middlename</to_customer>
+                </customer_middlename>
+                <customer_lastname>
+                    <to_customer>lastname</to_customer>
+                </customer_lastname>
+                <customer_suffix>
+                    <to_customer>suffix</to_customer>
+                </customer_suffix>
+                <customer_email>
+                    <to_customer>email</to_customer>
+                </customer_email>
+                <customer_dob>
+                    <to_customer>dob</to_customer>
+                </customer_dob>
+                <customer_taxvat>
+                    <to_customer>taxvat</to_customer>
+                </customer_taxvat>
+                <customer_gender>
+                    <to_customer>gender</to_customer>
+                </customer_gender>
+            </ixepp_popup_quote>
+        </fieldsets>
+        <blocks>
+            <ixepp>
+                <class>Mageix_Ixepp_Block</class>
+            </ixepp>
+        </blocks>
+        <helpers>
+            <ixepp>
+                <class>Mageix_Ixepp_Helper</class>
+            </ixepp>
+        </helpers>
+    </global>
+    <default>
+		 <payment>
+            <ixepp>
+                <active>1</active>
+                <model>ixepp/ixepp</model>
+                <title>Checkout By Paypal (powered by Premium IXEPP&#8482;)</title>
+				<order_status>pending</order_status>
+				<sandbox_mode>1</sandbox_mode>
+				<currency>USD</currency>
+            </ixepp>
+         </payment>
+		 <ixepp>
+            <mageix_group>
+                <popup_ixepp_enabled>1</popup_ixepp_enabled>
+            </mageix_group>
+			<mageix_themes>
+				<header_bg_color>#6D84B4</header_bg_color>
+				<header_font_style>Verdana</header_font_style>
+				<header_font_color>#FFFFFF</header_font_color>
+				<header_border_color>#3B5998</header_border_color>
+				<buttons_bg_color>#72AC58</buttons_bg_color>
+				<buttons_font_style>Lucida Grande,Tahoma,Verdana</buttons_font_style>
+				<buttons_font_color>#FFFFFF</buttons_font_color>
+				<buttons_border_color>#3B6E22</buttons_border_color>
+				<content_color>#6D84B4</content_color>
+				<content_font_style>Verdana,Geneva,sans-serif</content_font_style>
+			</mageix_themes>
+		</ixepp>
+    </default>
+</config>

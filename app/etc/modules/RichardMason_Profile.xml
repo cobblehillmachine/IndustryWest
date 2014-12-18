@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<RichardMason_Profile>
+			<active>true</active>
+			<codePool>community</codePool>
+		</RichardMason_Profile>
+	</modules>
+</config>
