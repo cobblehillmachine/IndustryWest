@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /**
+ * Mageix LLC
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to Mageix LLC's  End User License Agreement
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://mageix.com/index.php/license-guide/
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to webmaster@mageix.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+
+ *
+ * @category	Mageix
+ * @package 	Mageix_Ixepp
+ * @copyright   Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @license	http://mageix.com/index.php/license-guide/  End User License Agreement
+ */
+
+/*
+ * Magento Mageix IXEPP Module
+ *
+ * @category   Checkout & Payments
+ * @package	Mageix_Ixepp
+ * @copyright  Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @designer & author  Brian Graham
+ * @co-author Rahul Sharma
+  *@licence 	http://mageix.com/index.php/license-guide/ 
+ */ -->
+<config>
+   <tabs>
+        <mageix translate="label" module="ixepp">
+            <label>Mageix&#8482; Extensions</label>
+            <sort_order>100</sort_order>
+        </mageix>
+   </tabs>
+   <sections>
+		
+
+		<ixepp translate="label" module="ixepp">
+            <label>Premium IXEPP&#8482; Settings</label>
+            <tab>mageix</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+ 
+            <groups>
+                <mageix_group translate="label" module="ixepp">
+                    <label>Premium IXEPP&#8482; Cart Link Status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <popup_ixepp_enabled translate="label">
+                            <label>Enable Premium IXEPP&#8482; Checkout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </popup_ixepp_enabled>
+                    </fields>
+                </mageix_group>
+
+				<mageix_payment translate="label" module="ixepp">
+                    <label>Premium IXEPP&#8482; Paypal Details</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1050</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/active</config_path>
+                        </active>
+                        <merchant_country translate="label comment">
+                            <label>Merchant Country</label>
+                            <config_path>paypal/general/merchant_country</config_path>
+                            <comment>If not specified, Default Country from General Config will be used</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>paypal/system_config_source_merchantCountry</source_model>
+                            <backend_model>paypal/system_config_backend_merchantCountry</backend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <sort_order>2</sort_order>
+							<config_path>payment/ixepp/merchant_country</config_path>
+                        </merchant_country>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<config_path>payment/ixepp/title</config_path>
+                        </title>
+                         <sandbox_mode translate="label">
+                            <label>Sandbox Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/sandbox_mode</config_path>
+                        </sandbox_mode>
+                        <currency translate="label">
+                            <label>Accepted Currency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/currency</config_path>
+                        </currency>
+                        <allowspecific translate="label">
+                            <label>Payment from Applicable Countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>15</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>16</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/specificcountry</config_path>
+                        </specificcountry>
+                        <email translate="label">
+                            <label>PayPal Email</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/email</config_path>
+                        </email>
+                        <apiuser translate="label">
+                            <label>API User ID</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/apiuser</config_path>
+                        </apiuser>
+                        <apipass translate="label">
+                            <label>API Password</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/apipass</config_path>
+                        </apipass>
+                        <apisig translate="label">
+                            <label>API Signature</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/apisig</config_path>
+                        </apisig>
+                         <appid translate="label">
+                            <label>Application ID</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/appid</config_path>
+                        </appid>
+
+                        <!-- <order_status translate="label">
+							<label>New order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<config_path>payment/ixepp/order_status</config_path>
+					    </order_status> -->                      
+                        <custexp translate="label">
+                            <label>Customer Experience</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Mageix_Ixepp_Model_Adminhtml_Source_Customerexperience</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/custexp</config_path>
+                        </custexp>
+                        
+                                                <prodtype translate="label">
+                            <label>Type of Products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Mageix_Ixepp_Model_Adminhtml_Source_Producttype</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<config_path>payment/ixepp/prodtype</config_path>
+                        </prodtype>
+
+                    </fields>
+                </mageix_payment>
+
+				<mageix_themes translate="label" module="ixepp">
+                    <label>Premium IXEPP&#8482; Theme</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <css_theme_ixepp_section_header translate="label">
+                            <label>Section Header</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>96</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </css_theme_ixepp_section_header>
+						<header_bg_color translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>97</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #6D84B4</comment>
+						</header_bg_color>
+						<header_font_style translate="label">
+							<label>Font Style</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>98</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: Verdana</comment>
+						</header_font_style>
+						<header_font_color translate="label">
+							<label>Font Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>99</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #FFFFFF</comment>
+						</header_font_color>
+						<header_border_color translate="label">
+							<label>Border Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #3B5998</comment>
+						</header_border_color>						
+						
+						<css_theme_ixepp_section_buttons translate="label">
+                            <label>Section Buttons</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </css_theme_ixepp_section_buttons>
+						<buttons_bg_color translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>106</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #72AC58</comment>
+						</buttons_bg_color>
+						<buttons_font_style translate="label">
+							<label>Font Style</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>107</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: Lucida Grande,Tahoma,Verdana</comment>
+						</buttons_font_style>
+						<buttons_font_color translate="label">
+							<label>Font Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>108</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #FFFFFF</comment>
+						</buttons_font_color>
+						<buttons_border_color translate="label">
+							<label>Border Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>109</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #3B6E22</comment>
+						</buttons_border_color>	
+
+						<css_theme_ixepp_section_content translate="label">
+                            <label>Section Content</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>115</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </css_theme_ixepp_section_content>
+						<content_color translate="label">
+							<label>Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>116</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: #6D84B4</comment>
+						</content_color>
+						<content_font_style translate="label">
+							<label>Font Style</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>117</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: Verdana,Geneva,sans-serif</comment>
+						</content_font_style>
+                    </fields>
+                </mageix_themes>
+            </groups>
+        </ixepp>
+
+    </sections>
+</config>

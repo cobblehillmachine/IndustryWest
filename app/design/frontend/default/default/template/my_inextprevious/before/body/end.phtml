@@ -1,0 +1,115 @@
+<?php if (Mage::registry('current_category') and Mage::registry('current_product')) : ?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+
+<div class="nextprevholder">
+  <div class="nextprev">
+    <div class="nextprevbox">
+      <?php if ($_previous = $this->_getPrevious()) : ?>
+      <?php if ($_next = $this->_getNext()) :
+	  
+	  $nexttitle =  $_helper->productAttribute($_next, $_next->getName(), 'name')  . " - " .  $_next->getResource()->getAttribute('color')->getFrontend()->getValue($_next);
+	  $prevtitle = $_helper->productAttribute($_previous, $_previous->getName(), 'name')  . " - " . $_previous->getResource()->getAttribute('color')->getFrontend()->getValue($_previous);
+	   ?>      
+      <a id="my_next_product_link" title="<?php echo $nexttitle;?>" href="<?php echo $this->_getNextUrl() ?>" class="my_next_image"><span><img src="<?php echo $this->helper('catalog/image')->init($_next, 'image')->resize(56,84); ?>" alt="<?php echo $nexttitle; ?>" title="<?php echo $nexttitle; ?>" /></span>
+      <div class="shownextprev">NEXT &raquo;</div>
+      </a>
+      <div class="npsep">/</div>
+      <a id="my_previous_product_link" title="<?php echo $prevtitle;?>" href="<?php echo $this->_getPreviousUrl() ?>" class="my_previous_image"><span><img src="<?php echo $this->helper('catalog/image')->init($_previous, 'image')->resize(56,84); ?>" alt="<?php echo $prevtitle; ?>" title="<?php echo $prevtitle; ?>" /></span>
+      <div class="shownextprev">&laquo; PREV</div>
+      </a>
+      <?php endif; ?>      
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	var next_timeout;
+		var prev_timeout;
+		var npactive = false;
+	function shownext() {	
+			clearTimeout(next_timeout);	
+			$j(".sharebuttons").css("z-index",1);
+			$j(".my_next_image SPAN").addClass("npactive").fadeIn(200); 		
+		}
+		function hidenext() {
+			clearTimeout(next_timeout);	
+			next_timeout = setTimeout(function() { 
+					hidenextnow();
+				}, 100);
+		}		
+		
+		function hidenextnow() {
+			clearTimeout(next_timeout);
+			$j(".my_next_image SPAN").removeClass("npactive").fadeOut(200); 
+			if ($j(".nextprevbox .npactive").size() == 0) {	$j(".sharebuttons").css("z-index",11);	}				
+		}
+	/////////////////////
+		function showprev() {	
+			clearTimeout(prev_timeout);		
+			$j(".sharebuttons").css("z-index",1);			
+			$j(".my_previous_image SPAN").addClass("npactive").fadeIn(200); 						
+		}
+		function hideprev() {
+			clearTimeout(prev_timeout);	
+			prev_timeout = setTimeout(function() { 
+					hideprevnow();
+				}, 100);
+		}		
+		function hideprevnow() {
+			clearTimeout(prev_timeout);
+			$j(".my_previous_image SPAN").removeClass("npactive").fadeOut(200); 			
+			if ($j(".nextprevbox .npactive").size() == 0) {	$j(".sharebuttons").css("z-index",11);	}			
+		}		
+$j(function () {
+	$j(document).ready(function () {
+	
+					
+	/// NEXT PREV MENUS BEGIN
+		$j(".my_next_image").mouseenter(function(e) {	shownext();		});
+		$j(".my_next_image").mouseleave(function(e) {	hidenext();		});
+		/////////////////////
+	
+		
+		$j(".my_previous_image").mouseenter(function(e) {	showprev();		});
+		$j(".my_previous_image").mouseleave(function(e) {	hideprev();		});		
+			
+		 
+		/// NEXT PREV MENUS END		
+		  		
+		
+		
+		
+	});
+});
+
+if (typeof jQuery == 'undefined') {
+    document.observe("dom:loaded", function() {
+        Event.observe(document, 'keyup', function(event){
+            var _keyCode = (event.keyCode ? event.keyCode : event.which);
+            if (_keyCode == 37) {
+                var _myPreviousProductLink = $('my_previous_product_link').readAttribute('href');
+                window.location.href = _myPreviousProductLink;
+                return true;
+            } else if (_keyCode == 39) {
+                var _myNextProductLink = $('my_next_product_link').readAttribute('href');
+                window.location.href = _myNextProductLink;
+                return true;
+            }
+        });
+    });
+} else {
+    jQuery(document.documentElement).keyup(function (event) {
+        var _keyCode = (event.keyCode ? event.keyCode : event.which);
+        if (_keyCode == 37) {
+            var _myPreviousProductLink = jQuery('#my_previous_product_link').attr('href');
+            window.location.href = _myPreviousProductLink;
+            return true;
+        } else if (_keyCode == 39) {
+            var _myNextProductLink = jQuery('#my_next_product_link').attr('href');
+            window.location.href = _myNextProductLink;
+            return true;
+        }
+    });
+}
+</script>
+<?php endif; ?>

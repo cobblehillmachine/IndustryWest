@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<layout>
+<adminhtml_sales_order_view>
+        <reference name="sales_order_edit">
+			<action method="addButton"  module="ordercorrection" ifconfig="ordercorrection/general/enable_creditmemo">
+				<name>Delete Credit Memo(s)</name><button helper="ordercorrection/addDeleteCreditMemobutton"/>
+			</action> 
+			<action method="addButton" module="ordercorrection" ifconfig="ordercorrection/general/enable_invoice">
+				<name>Delete Invoice(s)</name><button helper="ordercorrection/addDeleteInvoicebutton"/>
+			</action>
+			<action method="addButton" module="ordercorrection" ifconfig="ordercorrection/general/enable_shipment">
+				<name>Delete Shipment(s)</name><button helper="ordercorrection/addDeleteShipmentbutton"/>
+			</action> 
+			<action method="addButton" module="ordercorrection" ifconfig="ordercorrection/general/enable_reset">
+				<name>Reset</name><button helper="ordercorrection/addResetbutton"/>
+			</action>		 
+			 <action method="addButton" module="ordercorrection" ifconfig="ordercorrection/general/enable_delete">
+				<name>Delete Order</name><button helper="ordercorrection/addDeletebutton"/>
+			</action> 
+        </reference>
+    </adminhtml_sales_order_view>
+
+	<ordercorrection_restore>
+        <reference name="content">
+            <block type="ordercorrection/restore" name="RestoreForm" template="ordercorrection/restore.phtml">
+           </block>
+        </reference>
+    </ordercorrection_restore>
+</layout>

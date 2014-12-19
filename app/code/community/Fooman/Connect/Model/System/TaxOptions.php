@@ -1,0 +1,66 @@
+<?php
+
+/*
+ * @author     Kristof Ringleff
+ * @package    Fooman_Connect
+ * @copyright  Copyright (c) 2010 Fooman Limited (http://www.fooman.co.nz)
+ */
+
+class Fooman_Connect_Model_System_TaxOptions extends Fooman_Connect_Model_System_Abstract {
+
+    const XERO_TAX_RATES_REGISTRY_KEY = 'xero-tax-rates';
+
+    /**
+     * $output = null return array of tax rates from xero for back-end select drop down
+     * $output = 'XERO_TAX_RATE_IDENTIFIER' return effective tax rate percentage
+     * $output not null return array of tax rates keyed by effective tax rates
+     * Note the last is used during fallback when no tax rate is present, has the
+     * potential to return the wrong one when using multiple rates within Xero with the same percentage
+     *
+     * @param $output
+     * @return array | float
+     */
+    public function toOptionArray($output=null) {
+        $returnArray=array();
+        if($this->isConfigured() && Mage::helper('foomanconnect')->getMageStoreConfig('xeroenabled')) {
+            $_session = $this->getSession();
+            $returnArray[] = array('value' => '', 'label' => '');
+
+            $result = Mage::registry(self::XERO_TAX_RATES_REGISTRY_KEY);
+            if (!$result) {
+                try {
+                    $result = Mage::getModel('foomanconnect/xeroApi')->getTaxRates();
+                    Mage::register(self::XERO_TAX_RATES_REGISTRY_KEY, $result);
+                } catch (Exception $e) {
+                    $_session->addError($e->getMessage());
+                    //display the error message in the dropdown
+                    $returnArray[] = array('value' => '', 'label' => $e->getMessage());
+                    return $returnArray;
+                }
+            }
+
+            //we have been successful
+            foreach ($result as $taxRate) {
+                if (empty($output)) {
+                    $returnArray[] = array(
+                        'value' => $taxRate['TaxType'], 'label' =>
+                        substr($taxRate['Name'], 0, 30) . ' [' . $taxRate['EffectiveRate'] . '%]'
+                    );
+                } elseif ($output == $taxRate['TaxType']) {
+                    return $taxRate['EffectiveRate'];
+                } elseif($taxRate['CanApplyToRevenue']) {
+                    $returnArray[(string)$taxRate['EffectiveRate']] = $taxRate['TaxType'];
+                }
+            }
+        } else {
+            $returnArray[] = array(
+                'value' => '',
+                'label' => Mage::helper('foomanconnect')->__(
+                    'Please configure and enable the integration above and save config.'
+                )
+            );
+        }
+        return $returnArray;
+    }
+
+}

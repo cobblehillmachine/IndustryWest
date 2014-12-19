@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fooman_PdfCustomiser>
+            <version>2.1.8</version>
+            <depends>
+            </depends>
+        </Fooman_PdfCustomiser>
+    </modules>
+
+    <global>
+        <rewrite>
+            <fooman_pdfcustomiser_adminhtml_sales_order1>
+                <from><![CDATA[#^/[^/]+/sales_order/pdfinvoices#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfinvoices/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order1>
+            <fooman_pdfcustomiser_adminhtml_sales_order2>
+                <from><![CDATA[#^/[^/]+/sales_order/pdfshipments#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfshipments/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order2>
+            <fooman_pdfcustomiser_adminhtml_sales_order3>
+                <from><![CDATA[#^/[^/]+/sales_order/pdfcreditmemos#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfcreditmemos/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order3>
+            <fooman_pdfcustomiser_adminhtml_sales_order4>
+                <from><![CDATA[#^/[^/]+/sales_order/pdfdocs#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfdocs/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order4>
+            <fooman_pdfcustomiser_adminhtml_sales_order5>
+                <from><![CDATA[#^/emailattachments/admin_order/pdforders#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdforders/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order5>
+            <fooman_pdfcustomiser_adminhtml_sales_order6>
+                <from><![CDATA[#^/emailattachments/admin_order/pdfpicking#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfpicking/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order6>
+            <fooman_pdfcustomiser_adminhtml_sales_order7>
+                <from><![CDATA[#^/[^/]+/sales/shipment/pdfinvoices#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfinvoices/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order7>
+            <fooman_pdfcustomiser_adminhtml_sales_order8>
+                <from><![CDATA[#^/[^/]+/sales/invoice/pdfshipments#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfshipments/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order8>
+            <fooman_pdfcustomiser_adminhtml_sales_order9>
+                <from><![CDATA[#^/[^/]+/sales/creditmemo/pdfcreditmemos#]]></from>
+                <to>/pdfcustomiser/adminhtml_sales_order/pdfcreditmemos/</to>
+            </fooman_pdfcustomiser_adminhtml_sales_order9>
+            <!-- FRONT END -->
+            <fooman_pdfcustomiser_sales_order1>
+                <from><![CDATA[#^/sales/order/print/#]]></from>
+                <to>/pdfcustomiser/sales_order/print/</to>
+            </fooman_pdfcustomiser_sales_order1>
+            <fooman_pdfcustomiser_sales_order2>
+                <from><![CDATA[#^/sales/order/printInvoice/#]]></from>
+                <to>/pdfcustomiser/sales_order/printInvoice/</to>
+            </fooman_pdfcustomiser_sales_order2>
+            <fooman_pdfcustomiser_sales_order3>
+                <from><![CDATA[#^/sales/order/printShipment/#]]></from>
+                <to>/pdfcustomiser/sales_order/printShipment/</to>
+            </fooman_pdfcustomiser_sales_order3>
+            <fooman_pdfcustomiser_sales_order4>
+                <from><![CDATA[#^/sales/order/printCreditmemo/#]]></from>
+                <to>/pdfcustomiser/sales_order/printCreditmemo/</to>
+            </fooman_pdfcustomiser_sales_order4>
+
+        </rewrite>
+        <blocks>
+            <pdfcustomiser>
+                <class>Fooman_PdfCustomiser_Block</class>
+            </pdfcustomiser>            
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view>Fooman_PdfCustomiser_Block_View</sales_order_view>
+                </rewrite>
+            </adminhtml>
+            <!-- <sales>
+                <rewrite>
+                    <order_info>Fooman_PdfCustomiser_Block_Sales_Order_Info</order_info>
+                </rewrite>
+            </sales>-->
+        </blocks>
+        <models>
+            <pdfcustomiser>
+                <class>Fooman_PdfCustomiser_Model</class>
+            </pdfcustomiser>
+            <sales>
+                <rewrite>
+                    <order_pdf_invoice>Fooman_PdfCustomiser_Model_Invoice</order_pdf_invoice>
+                </rewrite>
+                <rewrite>
+                    <order_pdf_shipment>Fooman_PdfCustomiser_Model_Shipment</order_pdf_shipment>
+                </rewrite>
+                <rewrite>
+                    <order_pdf_creditmemo>Fooman_PdfCustomiser_Model_Creditmemo</order_pdf_creditmemo>
+                </rewrite>
+            </sales>
+        </models>
+        <helpers>
+            <pdfcustomiser>
+                <class>Fooman_PdfCustomiser_Helper</class>
+            </pdfcustomiser>
+            <emailattachments>
+                <rewrite>
+                    <data>Fooman_PdfCustomiser_Helper_Data</data>
+                </rewrite>
+            </emailattachments>
+        </helpers>
+        <pdfcustomiser><!-- config values --></pdfcustomiser>
+        <customer>
+              <address>
+                <formats>
+                    <european translate="title" module="customer">
+                        <title>European</title>
+                        <defaultFormat><![CDATA[
+{{depend company}}{{var company}}<br/>{{/depend}}
+{{depend prefix}}{{var prefix}} {{/depend}}{{var firstname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var lastname}}{{depend suffix}} {{var suffix}}{{/depend}}<br/>
+{{var street1}}<br/>
+{{depend street2}}{{var street2}}<br/>{{/depend}}
+{{depend street3}}{{var street3}}<br/>{{/depend}}
+{{depend street4}}{{var street4}}<br/>{{/depend}}
+{{var postcode}}  {{depend city}}{{var city}}{{/depend}} <br/>
+{{var country}}
+                        ]]></defaultFormat>
+                    </european>
+                    <us translate="title" module="customer">
+                        <title>US</title>
+                        <defaultFormat><![CDATA[
+{{depend prefix}}{{var prefix}} {{/depend}}{{var firstname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var lastname}}{{depend suffix}} {{var suffix}}{{/depend}}<br/>
+{{depend company}}{{var company}}<br />{{/depend}}
+{{var street1}}<br />
+{{depend street2}}{{var street2}}<br />{{/depend}}
+{{depend street3}}{{var street3}}<br />{{/depend}}
+{{depend street4}}{{var street4}}<br />{{/depend}}
+{{depend city}}{{var city}},  {{/depend}}{{depend region}}{{var region}}, {{/depend}}{{var postcode}}<br/>
+{{var country}}<br/>
+{{depend telephone}}T: {{var telephone}}{{/depend}}
+{{depend fax}}<br/>F: {{var fax}}{{/depend}}
+                        ]]></defaultFormat>
+                    </us>
+                    <jp translate="title" module="customer">
+                        <title>JP</title>
+                        <defaultFormat><![CDATA[
+{{var lastname}}{{var firstname}}{{depend suffix}} {{var suffix}}{{/depend}}<br/>
+{{depend company}}{{var company}}<br />{{/depend}}
+{{var country}}<br/>
+{{var postcode}}<br/>
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}<br/>
+{{var street1}}<br />
+{{depend street2}}{{var street2}}<br />{{/depend}}
+{{depend street3}}{{var street3}}<br />{{/depend}}
+{{depend street4}}{{var street4}}<br />{{/depend}}
+{{depend telephone}}T: {{var telephone}}{{/depend}}
+{{depend fax}}<br/>F: {{var fax}}{{/depend}}
+                        ]]></defaultFormat>
+                    </jp>
+                </formats>
+            </address>
+        </customer>
+        <!--
+        <pdf>
+            <totals>
+                <tax>
+                    <sort_order>450</sort_order>
+                </tax>
+            </totals>
+        </pdf>
+        -->
+    </global>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Fooman_PdfCustomiser>
+                    <files>
+                        <default>Fooman_PdfCustomiser.csv</default>
+                    </files>
+                </Fooman_PdfCustomiser>
+            </modules>
+        </translate>
+    </adminhtml>
+    <admin>
+        <routers>
+            <!--<adminhtml>
+                    <args>
+                      <modules>
+                            <Fooman_PdfCustomiser_Adminhtml before="EM_DeleteOrder_Adminhtml">Fooman_PdfCustomiser_Adminhtml</Fooman_PdfCustomiser_Adminhtml>
+                      </modules>
+                    </args>
+            </adminhtml>-->
+            <fooman_pdfcustomiser>
+                <use>admin</use>
+                <args>
+                    <module>Fooman_PdfCustomiser</module>
+                    <frontName>pdfcustomiser</frontName>
+                </args>
+            </fooman_pdfcustomiser>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <fooman_pdfcustomiser>
+                <use>standard</use>
+                <args>
+                    <module>Fooman_PdfCustomiser</module>
+                    <frontName>pdfcustomiser</frontName>
+                </args>
+            </fooman_pdfcustomiser>
+        </routers>
+        <translate>
+            <modules>
+                <Fooman_PdfCustomiser>
+                    <files>
+                        <default>Fooman_PdfCustomiser.csv</default>
+                    </files>
+                </Fooman_PdfCustomiser>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <config_vars><!--config values -->
+        </config_vars>
+        <sales_pdf>
+            <all>
+                <alllogo/>
+                <alllogoplacement>auto</alllogoplacement>
+                <alllogowidth>5</alllogowidth>
+                <alllogoheight>2</alllogoheight>
+                <alllogofromleft>12</alllogofromleft>
+                <alllogofromtop>5</alllogofromtop>
+                <allbgimage/>
+                <allowneraddress/>
+                <allfooter1/>
+                <allfooter2/>
+                <allfooter3/>
+                <allfooter4/>
+                <allpagesize>A4</allpagesize>
+                <allpagenumbers>0</allpagenumbers>
+                <allrowtotaltaxinclusive>0</allrowtotaltaxinclusive>
+                <allonly1grandtotal>1</allonly1grandtotal>
+                <displayboth>0</displayboth>
+                <alladdressformat>pdf</alladdressformat>
+                <allmargintop>15</allmargintop>
+                <allmarginbottom>25</allmarginbottom>
+                <allmarginsides>20</allmarginsides>
+                <allfont></allfont>
+                <allfontsize>12</allfontsize>
+                <allqtyasint>1</allqtyasint>
+                <alldisplayweight>0</alldisplayweight>
+                <alltaxsummary>0</alltaxsummary>
+                <allweightunit>kg</allweightunit>
+                <alldisplayemail>0</alldisplayemail>
+                <allprintcomments>0</allprintcomments>
+                <allsign>0</allsign>
+                <allsigncertificate></allsigncertificate>
+                <allsignpassword></allsignpassword>
+                <allnewwindow>0</allnewwindow>
+            </all>
+            <order>
+                <ordertitle>ORDER CONFIRMATION</ordertitle>
+                <orderaddresses>both</orderaddresses>
+                <ordercolumns>name,sku,price,qty,tax,subtotal</ordercolumns>
+                <ordercustom></ordercustom>
+                <ordercolumnwidths></ordercolumnwidths>
+            </order>
+            <invoice>
+                <invoicetitle>TAX INVOICE</invoicetitle>
+                <invoicedeliverydate>0</invoicedeliverydate>
+                <invoicetaxnumber></invoicetaxnumber>
+                <invoiceaddresses>both</invoiceaddresses>
+                <invoicecolumns>name,sku,price,qty,tax,subtotal</invoicecolumns>                
+                <invoicecustom></invoicecustom>
+                <invoiceintegratedlabels>0</invoiceintegratedlabels>
+                <invoicecolumnwidths></invoicecolumnwidths>
+            </invoice>
+            <shipment>
+                <shipmenttitle>PACKING SLIP</shipmenttitle>
+                <shipmentuseorder>0</shipmentuseorder>
+                <shipmentaddresses>both</shipmentaddresses>
+                <shipmentcolumns>name,sku,qty</shipmentcolumns>                
+                <shipmentcustom></shipmentcustom>
+                <shipmentintegratedlabels>0</shipmentintegratedlabels>
+                <shipmentcolumnwidths></shipmentcolumnwidths>
+            </shipment>
+            <creditmemo>
+                <creditmemotitle>CREDIT MEMO</creditmemotitle>
+                <creditmemoaddresses>both</creditmemoaddresses>
+                <creditmemocolumns>name,sku,price,qty,tax,subtotal</creditmemocolumns>                
+                <creditmemocustom></creditmemocustom>
+                <creditmemocolumnwidths></creditmemocolumnwidths>
+            </creditmemo>
+        </sales_pdf>
+    </default>
+
+</config>

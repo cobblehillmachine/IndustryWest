@@ -1,0 +1,137 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<form id="co-shippingextra-form" action="">
+
+<?php 
+
+$_options = array(
+	$this->__('Residential'),
+	$this->__('Business')
+);
+
+?>
+<div class="inner-box">
+        <?php if (!$this->helper('wsafreightcommon')->isFixedLiftgateFee()): ?>
+	        <div class="a-left input-checkbox">
+	            <input type="checkbox" name="allow_liftgate" id="allow_liftgate" value="1"  />
+	            <label for="allow_liftgate"><?php echo $this->__('Do you need a Liftgate?') ?></label>
+	        </div>
+ 		<?php endif; ?>
+        <?php if (!$this->helper('wsafreightcommon')->isFixedDeliveryType()): ?>
+	     	<div class="a-left input-select">
+		        <?php echo $this->__('What type of location is the ship to address?') ?>
+		        <select id="address_type" name="address_type">
+					<?php foreach($_options as $_option): ?>
+						<option value="<?php echo $_option ?>"><?php echo $_option ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		<?php endif; ?>
+</div>
+<br/>
+
+        <div class="buttons-set" id="shippingextra-buttons-container">
+            <a href="#" onclick="checkout.back(); return false;" class="back left"><?php echo $this->__('Back') ?></a>
+            <button type="button" class="button" onclick="shippingextra.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+            <span id="shippingextra-please-wait" style="display:none;" class="opc-please-wait">
+                <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp;
+            </span>
+        </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+
+var ShippingExtra = Class.create();
+ShippingExtra.prototype = {
+    initialize: function(form, saveUrl){
+        this.form = form;
+        if ($(this.form)) {
+            $(this.form).observe('submit', function(event){this.save();Event.stop(event);}.bind(this));
+        }
+        this.saveUrl = saveUrl;
+        this.onSave = this.nextStep.bindAsEventListener(this);
+        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
+    },
+
+    save: function(){
+        if (checkout.loadWaiting!=false) return;
+
+        var validator = new Validation(this.form);
+        if (validator.validate()) {
+
+            checkout.setLoadWaiting('shippingextra');
+
+
+            var request = new Ajax.Request(
+                this.saveUrl,
+                {
+                    method: 'post',
+                    onComplete: this.onComplete,
+                    onSuccess: this.onSave,
+                    onFailure: checkout.ajaxFailure.bind(checkout),
+                    parameters: Form.serialize(this.form)
+                }
+            );
+        }
+    },
+
+    resetLoadWaiting: function(transport){
+        checkout.setLoadWaiting(false);
+    },
+
+    nextStep: function(transport){
+        if (transport && transport.responseText){
+            try{
+                response = eval('(' + transport.responseText + ')');
+            }
+            catch (e) {
+                response = {};
+            }
+        }
+
+        if (response.error){
+            if ((typeof response.message) == 'string') {
+                alert(response.message);
+            } else {
+                if (window.billingRegionUpdater) {
+                    billingRegionUpdater.update();
+                }
+
+                alert(response.message.join("\n"));
+            }
+
+            return false;
+        }
+
+        checkout.setStepResponse(response);
+    }    
+}
+
+    var shippingextra = new ShippingExtra('co-shippingextra-form', "<?php echo $this->getUrl('checkout/onepage/saveShippingExtra') ?>");
+//]]>
+    
+</script>

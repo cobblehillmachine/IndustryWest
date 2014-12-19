@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>     
+     <checkout_cart_index>
+        <reference name="checkout.cart">
+             	<block type="webshopapps_productmatrix/checkout_cart_shipping" name="checkout.cart.shipping" as="shipping" template="webshopapps/productmatrix/checkout/cart/shipping.phtml"/>
+        </reference>
+    </checkout_cart_index>  
+</layout>

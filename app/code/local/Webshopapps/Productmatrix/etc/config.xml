@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_Productmatrix
+ * @copyright  Copyright (c) 2008 Auction Maid (http://www.webshopapps.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Karen Baker <enquiries@webshopapps.com>
+*/
+-->
+<config>
+   <modules>
+        <Webshopapps_Productmatrix>
+          <version>3.0.4</version>
+           <depends>
+               <Mage_Shipping />
+           </depends>
+    </Webshopapps_Productmatrix>
+    </modules>
+ <global>
+    <models>
+       <productmatrix>
+              <class>Webshopapps_Productmatrix_Model</class>
+            </productmatrix>
+             <productmatrix_adminhtml>
+              <class>Webshopapps_Productmatrix_Adminhtml_Model</class>
+      </productmatrix_adminhtml>
+	  <productmatrix_shipping>
+			<class>Webshopapps_Productmatrix_Model</class>
+			<resourceModel>productmatrix_mysql4</resourceModel>
+		</productmatrix_shipping>
+		<productmatrix_mysql4>
+			<class>Webshopapps_Productmatrix_Model_Mysql4</class>
+			<entities>
+	  			<productmatrix>
+					<table>shipping_productmatrix</table>
+				</productmatrix>
+			</entities>
+      </productmatrix_mysql4>
+     	  <googlecheckout>
+ 	   		<rewrite>
+	   			<api_xml_callback>Webshopapps_Productmatrix_GoogleCheckout_Model_Api_Xml_Callback</api_xml_callback>
+	   		</rewrite>
+ 	  </googlecheckout>
+    </models>
+    <events>
+   		<admin_system_config_changed_section_carriers>
+			<observers>
+				<productmatrix_observer>
+					<class>productmatrix/observer</class>
+					<method>postError</method>
+				</productmatrix_observer>
+			</observers>
+		</admin_system_config_changed_section_carriers>
+    </events>  
+    <resources>
+      <productmatrix_setup>
+        <setup>
+          <module>Webshopapps_Productmatrix</module>
+          <class>Mage_Eav_Model_Entity_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+            <productmatrix_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </productmatrix_write>
+            <productmatrix_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </productmatrix_read>
+      </productmatrix_setup>
+    </resources>
+    <sales>
+	<shipping>
+	    <carriers>
+			<productmatrix>
+				<class>Webshopapps_Productmatrix_Model_Carrier_Productmatrix</class>
+			</productmatrix>
+	    </carriers>
+	</shipping>
+    </sales>
+    <blocks>
+		<webshopapps_productmatrix>
+		<class>Webshopapps_Productmatrix_Block</class>
+		</webshopapps_productmatrix>
+	</blocks>
+  </global>
+      <frontend>
+        <routers>
+            <productmatrix>
+                <use>standard</use>
+                <args>
+                    <module>Webshopapps_Productmatrix</module>
+                    <frontName>productmatrix</frontName>
+                </args>
+            </productmatrix>
+        </routers>
+        <translate>
+      		<modules>
+		        <Webshopapps_Productmatrix>
+		          <files>
+		            <default>Webshopapps_Productmatrix.csv</default>
+		          </files>
+		        </Webshopapps_Productmatrix>
+      		</modules>
+    	</translate>
+          <layout>
+              <updates>
+                  <productmatrix module="Webshopapps_Productmatrix">
+                      <file>webshopapps_productmatrix.xml</file>
+                  </productmatrix>
+              </updates>
+          </layout>
+    </frontend>
+   <adminhtml>
+    <translate>
+      <modules>
+        <Webshopapps_Productmatrix>
+          <files>
+            <default>Webshopapps_Productmatrix.csv</default>
+          </files>
+        </Webshopapps_Productmatrix>
+      </modules>
+    </translate>
+      
+ 	</adminhtml>
+   
+    <default>
+        <carriers>
+            <productmatrix>
+                <active>0</active>
+                <condition_name>per_package</condition_name>
+                <free_shipping_text>Free Shipping</free_shipping_text>
+                <postcode_filter>none</postcode_filter>
+                <show_only_free>0</show_only_free>
+                <sallowspecific>0</sallowspecific>
+                <cutoff_cost>50</cutoff_cost>
+                <model>productmatrix_shipping/carrier_productmatrix</model>
+                <title>Shipping Option</title>
+                <name>Productmatrix</name>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>      
+             	<use_discount>1</use_discount>
+             	<parent_group>child</parent_group>
+             	<append_star_rates>1</append_star_rates>
+                <serial backend_model="adminhtml/system_config_backend_encrypted"/>
+                <ship_once>0</ship_once>
+                <star_include_all>1</star_include_all>
+           </productmatrix>
+        </carriers>
+    </default>
+</config>

@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <foomancommon>
+            <label>All</label>
+            <tab>fooman</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>100</sort_order>
+            <groups>
+                <notifications>
+                    <label>Update Notifications</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enableordermangerupdates translate="label" module="ordermanager">
+                            <label>Receive Updates for Fooman OrderManager</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enableordermangerupdates>
+                    </fields>
+                </notifications>
+            </groups>
+        </foomancommon>
+        <ordermanager translate="label" module="ordermanager">
+            <label>Fooman OrderManager</label>
+            <tab>fooman</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>500</sort_order>
+            <groups>
+                <settings translate="label">
+                    <label>OrderManager Settings</label>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <preselectedcarrier translate="label">
+                            <label>Preselected Carrier</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_carrierOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </preselectedcarrier>
+                        <customtitle translate="label">
+                            <label>Name of Custom Carrier</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </customtitle>
+                    </fields>
+                </settings>
+                <invoiceaction translate="label">
+                    <label>Invoice Selected Action</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendemail translate="label">
+                            <label>Send Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendemail>
+                    </fields>
+                </invoiceaction>
+                <shipaction translate="label">
+                    <label>Ship Selected Action</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendemail translate="label">
+                            <label>Send Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendemail>
+                    </fields>
+                </shipaction>
+                <captureaction translate="label">
+                    <label>Capture Selected Action</label>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendemail translate="label">
+                            <label>Send Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendemail>
+                    </fields>
+                </captureaction>
+                <invoicecaptureaction translate="label">
+                    <label>Invoice and Capture Selected Action</label>
+                    <sort_order>350</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendemail translate="label">
+                            <label>Send Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendemail>
+                    </fields>
+                </invoicecaptureaction>
+                <invoiceshipaction translate="label">
+                    <label>Invoice and Ship Selected Action</label>
+                    <sort_order>400</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendinvoiceemail translate="label">
+                            <label>Send Invoice Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendinvoiceemail>
+                        <sendshipemail translate="label">
+                            <label>Send Shipment Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendshipemail>
+                    </fields>
+                </invoiceshipaction>
+                <captureshipaction translate="label">
+                    <label>Capture and Ship Selected Action</label>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendemail translate="label">
+                            <label>Send Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendemail>
+                    </fields>
+                </captureshipaction>
+                <invoicecaptureshipaction translate="label">
+                    <label>Invoice, Capture and Ship Selected Action</label>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                        <sendinvoiceemail translate="label">
+                            <label>Send Invoice Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendinvoiceemail>
+                        <sendshipemail translate="label">
+                            <label>Send Shipment Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendshipemail>
+                    </fields>
+                </invoicecaptureshipaction>
+                <statusaction translate="label">
+                    <label>Status Update Action</label>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <newstatus translate="label">
+                            <label>New Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ordermanager/system_orderStatusOptions</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </newstatus>
+                    </fields>
+                </statusaction>
+            </groups>
+        </ordermanager>
+    </sections>
+</config>

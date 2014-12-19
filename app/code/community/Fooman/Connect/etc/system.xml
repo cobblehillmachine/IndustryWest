@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <foomancommon>
+            <label>All</label>
+            <tab>fooman</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>100</sort_order>
+            <groups>
+                <notifications>
+                    <label>Update Notifications</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enableconnectupdates translate="label" module="foomanconnect">
+                            <label>Receive Updates for Fooman Connect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enableconnectupdates>
+                    </fields>
+                </notifications>
+            </groups>
+        </foomancommon>
+        <foomanconnect translate="label" module="foomanconnect">
+            <label>Fooman Connect</label>
+            <tab>fooman</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>800</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <settings translate="label">
+                    <label>Xero</label>
+                    <comment><![CDATA[<br />
+                    <div class="box">
+                    <p>For detailed instructions please refer to the Fooman Connect:Xero User Manual <a href="http://store.fooman.co.nz/media/custom/upload/File-1358501926.pdf">here</a>.</p>
+                    </div>
+                    ]]>
+                    </comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!--<xeroinstructions translate="label">
+                          <label>Installation</label>
+                          <frontend_type>text</frontend_type>
+                          <frontend_model>foomanconnect/adminhtml_system_instructions</frontend_model>
+                          <sort_order>10</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                        </xeroinstructions>-->
+                        <serial translate="label">
+                            <label>Serial Number</label>
+                            <comment></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </serial>
+                        <xeroenabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroenabled>
+                        <xeroautomatic translate="label">
+                            <label>Enable Automatic Exports</label>
+                            <comment><![CDATA[
+                            Please ensure you have configured a cronjob for Magento - <a href="http://www.magentocommerce.com/wiki/1_-_installation_and_configuration/how_to_setup_a_cron_job">read more.</a></p>
+                            ]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroautomatic>
+                        <consumerkey translate="label">
+                            <label>Consumer Key</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consumerkey>
+                        <consumersecret translate="label">
+                            <label>Consumer Secret</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consumersecret>
+                        <privatekey translate="label">
+                            <label>Private Key</label>
+                            <frontend_type>textarea</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </privatekey>
+                        <privatekeypassword translate="label">
+                            <label>Password of Private Key</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </privatekeypassword>
+                        <xeroaccountcodesale translate="label">
+                            <label>Sales Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_salesAccountOptions</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroaccountcodesale>
+                        <xeroaccountcodeshipping translate="label">
+                            <label>Shipping Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_shippingAccountOptions</source_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroaccountcodeshipping>
+                        <xeroaccountcodediscounts translate="label">
+                            <label>Discount Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_discountAccountOptions</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroaccountcodediscounts>
+                        <xeroaccountcoderefunds translate="label">
+                            <label>Refund Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_discountAccountOptions</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroaccountcoderefunds>
+                        <xeroaccountcodesurcharge translate="label">
+                            <label>Surcharge Account</label>
+                            <comment>only applicable if using Fooman Surcharge</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_shippingAccountOptions</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroaccountcodesurcharge>
+                        <xerodefaultzerotaxrate translate="label">
+                            <label>Default Taxrate for None Taxed Items</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_taxZeroOptions</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerodefaultzerotaxrate>
+                        <!--<xerooverridetax translate="label">
+                            <label>Tax Calculation</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_taxOverrideOptions</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerooverridetax>-->
+                        <xeroshippingtax translate="label">
+                            <label>Shipping Tax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_taxOptions</source_model>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroshippingtax>
+                        <xerosurchargetax translate="label">
+                            <label>Surcharge Tax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_taxOptions</source_model>
+                            <sort_order>53</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerosurchargetax>
+                        <xerotracking translate="label">
+                            <label>Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_trackingOptions</source_model>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerotracking>
+                        <xeroexportwithstatus translate="label">
+                            <label>Export Orders with Status</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>foomanconnect/system_orderStatusOptions</source_model>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroexportwithstatus>
+                        <xeroexportzero translate="label">
+                            <label>Export Orders with Zero Amounts</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroexportzero>
+                        <xeronumbering translate="label">
+                            <label>Use Xero Numbers</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>66</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeronumbering>
+                        <xerocreditnoteprefix translate="label">
+                            <label>Credit Note Prefix</label>
+                            <comment>Xero needs unique numbers across credit notes and invoices</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>67</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerocreditnoteprefix>
+                        <xerotransfercurrency translate="label">
+                            <label>Transfer Currency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_currencyOptions</source_model>
+                            <sort_order>68</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </xerotransfercurrency>
+                        <xeropayments translate="label">
+                            <label>Show Xero payments on Order View page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </xeropayments>
+                        <xeroversion translate="label">
+                            <label>Xero Version</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>foomanconnect/system_xeroVersionsOptions</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </xeroversion>
+                        <xerologenabled translate="label">
+                            <label>Enable Logging</label>
+                            <comment>If Magento logging is enabled and this option is enabled log messages are written to /var/log/xero.log</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </xerologenabled>
+                        <xeroenablereset translate="label">
+                            <label>Enable Reset</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroenablereset>
+                        <xeroorderstartdate translate="label">
+                            <label>Start Date for Orders</label>
+                            <comment>only applies to automatic export</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xeroorderstartdate>
+                        <xerocreditmemostartdate translate="label">
+                            <label>Start Date for Credit Memos</label>
+                            <comment>only applies to automatic export</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </xerocreditmemostartdate>
+                    </fields>
+                </settings>
+            </groups>
+        </foomanconnect>
+    </sections>
+</config>

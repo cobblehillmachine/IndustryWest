@@ -1,0 +1,119 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Order Export')?></h3></td>
+            <td class="a-right">
+                <!--<button onclick="window.location='<?php echo Mage::getUrl("export/markup")?>';" class="scalable go" type="button"><span><?php echo $this->__('Go to XSL markup tester')?></span></button>-->
+                <!--<button onclick="window.location='<?php echo Mage::getUrl("admin/admin/system_config")?>';" class="scalable go" type="button"><span><?php echo $this->__('Go to settings section')?></span></button>-->
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <form id="edit_form" name="edit_form" method="post" action="<?php echo $this->getUrl('*/*/post')?>">
+        <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+        <div class="entry-edit-head">
+          <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Export')?></h4>
+        </div>
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Store Configuration')?> <span class="required">*</span></td>
+                    <td class="input-ele">
+                      <?php echo $this->getWebsitesOptionHtml()?>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Export type')?> <span class="required">*</span></td>
+                    <td class="input-ele">
+                      <select type="select" class="select" name="type" id="type">
+                        <option value="csv"<?php echo (strtolower(Mage::getStoreConfig('admin/orderexport/defaulttype')) == 'csv')?' selected="selected"':''?>>CSV</option>
+                        <option value="xml"<?php echo (strtolower(Mage::getStoreConfig('admin/orderexport/defaulttype')) == 'xml')?' selected="selected"':''?>>XML</option>
+                        <option value="custom"<?php echo (strtolower(Mage::getStoreConfig('admin/orderexport/defaulttype')) == 'custom')?' selected="selected"':''?>>Custom</option>
+                      </select>
+                  </td>
+                </tr>
+                <tr style="display:none">
+                    <td class="label"><?php echo $this->__('Starting Order ID')?></td>
+                    <?php
+                      $lastExportedOrder = $this->helper('export')->getLastExportedOrder();
+                      if (strpos($lastExportedOrder, '-') !== FALSE) {
+                        $order = Mage::getModel('sales/order')->loadByIncrementId($lastExportedOrder);
+                        if ($order) $lastExportedOrder = $order->getOriginalIncrementId()+1;
+                      } else {
+                        $lastExportedOrder = $lastExportedOrder+1;
+                      }
+                    ?>
+                    <td class="input-ele"><input class="input-text required-entry" name="start" id="start" value="<?php echo $lastExportedOrder; ?>" /> (1 = <?php echo $this->__('from the beginning')?>)</td>
+                </tr>
+                <tr  style="display:none">
+                    <td class="label">&nbsp;</td>
+                    <td class="input-ele"><?php echo $this->__(sprintf('Last order id is %s [<a href="#" onclick="$(\'start\').value=\'%s\';return false;">include this</a>], last exported order id is %s [<a href="#" onclick="$(\'start\').value=\'%s\';return false;">start after this</a>]', (int)$this->helper('export')->getLastOrderId() - 100000000, (int)$this->helper('export')->getLastOrderId() - 100000000, $lastExportedOrder, (int)$lastExportedOrder+1))?></td>
+                </tr>
+                <tr  style="display:none">
+                    <td class="label"><?php echo $this->__('Ending Order ID')?></td>
+                    <td class="input-ele"><input class="input-text required-entry" name="end" id="end" value="0" /> (0 = <?php echo $this->__('All')?>)</td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Order Status')?></td>
+                    <td class="input-ele">
+                      <select type="select" class="select" name="order_status" id="order_status">
+                        <option value="all"><?php echo $this->__('All Statuses')?></option>
+                        <?php
+                        $statuses = array();
+                        foreach (Mage::getConfig()->getNode('global/sales/order/statuses')->children() as $status) {
+                            $label = (string) $status->label;
+                            echo "<option value=\"".$status->getName()."\">".Mage::helper('sales')->__($label)."</option>";
+                        }
+                        ?>
+                      </select>                    
+                    </td>
+                </tr>
+
+                <?php if (isset($_POST['order_ids'])) { ?>
+                <tr>
+                    <td class="label"><?php echo $this->__('Multiple Order IDs')?></td>
+                    <?php
+                    $ids = '';
+                    foreach ($_POST['order_ids'] as $id) {
+                      if (empty($ids)) $ids = $id; else $ids .= ",".$id;
+                    }
+                    ?>
+                    <td class="input-ele"><input class="input-text required-entry" name="multiple" id="multiple" value="<?php echo $ids ?>" /> (<?php echo $this->__('Automatically filled')?>)</td>
+                </tr>
+                <script> $('start').value = 1; $('end').value = 0; </script>
+                <?php } ?>
+                <tr>
+                    <td class="label"><?php echo $this->__('Date Range from')?></td>
+                    <td class="input-ele"><?php echo $this->getCalendarHtml('from')?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Date Range to')?></td>
+                    <td class="input-ele"><?php echo $this->getCalendarHtml('to')?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Start download after export')?></td>
+                    <td class="input-ele"><input type="checkbox" class="checkbox" name="startdownload" id="startdownload"/></td>
+                </tr>
+                <tr>
+                    <td class="label">&nbsp;</td>
+                    <td class="input-ele"><button onclick="editForm.submit()" class="scalable save" type="button"><span><?php echo $this->__('Export orders')?></span></button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+    $('to_trig').observe('click', function() { $('start').value = 1; $('end').value = 0; });
+    $('from_trig').observe('click', function() { $('start').value = 1; $('end').value = 0; });
+</script>
+<br/>
+<div class="entry-edit">
+  <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Exported orders')?></h4>
+  </div>
+  <fieldset>
+    <?php echo $this->getGrid()?>
+  </fieldset>
+</div>

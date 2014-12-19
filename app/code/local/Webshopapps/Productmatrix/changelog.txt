@@ -1,0 +1,42 @@
+16.4  - Put in fix so ProductMatrix can work with downloadable shipping.
+16.5  - Wasn't going through the full SQL select if postcode was a UK postcode and filtering was set to both, only checked for filtering as UK.
+16.6  - Added support for free shipping method (same as implemented in UPS).
+16.7  - Added check that retrieves itemtotals separately depending on product type.
+16.8  - Problem in 1.4 where calling product->getType on a child product that is virtual/downloadable returns the parent items type.
+16.9  - Took out headings from system.xml to ensure backward compatibility, not supported feature in all versions.
+16.10 - Refactored free shipping logic to ensure works on all magento versions supported.
+16.11 - Now saves the CSV file to var/export/yourcsv.csv as backup.
+17.0  - Combined zip with Common and New Logger
+17.1  - Fixed logging so it's inside the debug if statement. Fixed Free shipping promotions for 1.4.1.1 and under.
+17.2  - Removed old variable "FreeFound. Was undeclared.
+17.3  - Added in extra methods for Boardriders. Now supports zip code, get all package ids and delivery type filter as well as distinct delivery type filter. 
+17.3.1- Put fix in as was string comparing using a equal sign. 
+17.4  - is 17.3.1. 
+17.5  - Bug fix. Variable of out scope.
+17.6  - Bug fix. Under certain O/S directory structure was incorrectly referenced.
+17.6.1- Latest common code.
+17.7  - New algorithm to support item surcharging the same as weight. Now supports im=qty@price.
+17.8  - Includes wsacommon fix to resolve invalid call to downloadable shipping
+17.9  - Added support for fixed pricing in bundles using child shipping groups
+17.10 - Added in support for multiple customer groups on one line
+	Changed customer group lookup to work around issue with true edit order extension
+17.11 - updated to support 1.4.1, 1.5 and 1.6 google checkout in one file
+17.12 - Added instock=false algorithm. Allows you to only show a method when products are out of stock.
+17.13 - Typo in 17.12
+17.14 - Fixed postcode matching on numerics
+17.15 - Fixed ALT= method to set the method name - otherwise caused an issue when cart was added in a different order.
+17.16 - Added tooltip feature. Fixed showall functionality so that it only appends once
+17.17 - Refactored remove virtual item price logic as it wasn't evaluating bundle item children items correctly.
+17.18 - Added support for ALT= with other algorithm operators
+17.19 - Moved common to local.
+17.20 - Can now force the extension to always use the base currency rather than the store currency. 
+17.21 - Added support for minimum shipping price. Added support for splitting shipping group check based on whether custom options present or not.
+17.22 - Updated to support reducing zipcode to 5 chars for Brazil and USA
+17.23 - Fixed max price logic so that works when max price not set on all matching rows.
+17.24 - Introduced workaround for issue with free shipping promotions in Magento 1.4.0.
+17.25 - Added support for Canada postcode filtering
+17.26 - Added support for multiple free shipping methods
+17.27 - Added support for using tax inclusive prices
+17.28 - Change to support setting the shipping price for multiple items when using per item or per item bare totalling
+17.29 - Added free and zero cost method to getAllowedMethods to ensure compatibility with Google checkout and PayPal checkout when free shipping
+17.30 - Fixed issue with totalling of shipping group prices when more than one free method is selected

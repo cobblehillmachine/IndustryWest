@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout>
+    <export_index_index>
+        <reference name="content">
+            <block type="export/form" name="export" template="export/form.phtml"/>
+        </reference>
+    </export_index_index>
+    <export_markup_index>
+        <reference name="content">
+            <block type="adminhtml/template" name="export" template="export/markup.phtml"/>
+        </reference>
+    </export_markup_index>
+</layout>

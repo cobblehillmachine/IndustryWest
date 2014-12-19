@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Wholesale_Customer>
+            <version>0.1.0</version>
+        </Wholesale_Customer>
+    </modules>
+    <frontend>
+        <routers>
+            <customer>
+                <use>standard</use>
+                <args>
+                    <module>Wholesale_Customer</module>
+                    <frontName>customer</frontName>
+                </args>
+            </customer>
+        </routers>
+</frontend>	
+<global>
+	<fieldsets>
+		<customer_account>
+			<prefix><create>1</create><update>1</update><name>1</name></prefix>
+			<firstname><create>1</create><update>1</update><name>1</name></firstname>
+			<middlename><create>1</create><update>1</update><name>1</name></middlename>
+			<lastname><create>1</create><update>1</update><name>1</name></lastname>
+			<suffix><create>1</create><update>1</update><name>1</name></suffix>
+			<email><create>1</create><update>1</update></email>
+			<group_id><create>1</create><update>1</update></group_id>
+			<password><create>1</create></password>
+			<confirmation><create>1</create></confirmation>
+			<dob><create>1</create><update>1</update></dob>
+			<taxvat><create>1</create><update>1</update></taxvat>
+			<!--
+<title><create>1</create><update>1</update></title>
+			<license><create>1</create><update>1</update></license>
+			<fax><create>1</create><update>1</update></fax>
+			<profession><create>1</create><update>1</update></profession>
+			<findout><create>1</create><update>1</update></findout>
+-->
+		</customer_account>
+		</fieldsets>
+	<blocks>
+	  <customer>
+		  <rewrite>
+			  <form_login>Wholesale_Customer_Block_Form_Login</form_login>
+		 </rewrite>
+	  </customer>
+   </blocks>
+
+ 	<routers>
+		<customer>
+			<rewrite>
+				<wholesale_customer_account>
+				  <from><![CDATA[#^/account/#]]></from>
+				  <to>/customer/account/</to>
+				</wholesale_customer_account>
+			</rewrite>
+		</customer>
+	</routers>
+	<helpers>
+		  <customer>
+			  <rewrite>
+				  <data>Wholesale_Customer_Helper_Data</data>
+			 </rewrite>
+		  </customer>
+	 </helpers>  
+</global>
+</config>

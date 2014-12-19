@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fooman_Connect>
+            <version>1.4.1</version>
+        </Fooman_Connect>
+    </modules>
+
+    <global>
+        <models>
+            <foomanconnect>
+                <class>Fooman_Connect_Model</class>
+            </foomanconnect>
+        </models>
+        <resources>
+            <foomanconnect_setup>
+                <setup>
+                    <module>Fooman_Connect</module>
+                    <class>Fooman_Connect_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </foomanconnect_setup>
+            <foomanconnect_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </foomanconnect_write>
+            <foomanconnect_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </foomanconnect_read>
+        </resources>
+        <blocks>
+            <foomanconnect>
+                <class>Fooman_Connect_Block</class>
+            </foomanconnect>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view_info>Fooman_Connect_Block_Adminhtml_Sales_Order_View_Info</sales_order_view_info>
+                    <tax_rate_form>Fooman_Connect_Block_Adminhtml_Tax_Rate_Form</tax_rate_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <foomanconnect>
+                <class>Fooman_Connect_Helper</class>
+            </foomanconnect>
+        </helpers>
+        <foomanconnect><!-- config values -->
+        </foomanconnect>
+        <!--<fieldsets>
+             <sales_convert_quote_item>
+                <xero_rate><to_order_item>*</to_order_item></xero_rate>
+            </sales_convert_quote_item>
+        </fieldsets>-->
+    </global>
+
+    <adminhtml>
+        <events>
+            <sales_convert_quote_item_to_order_item>
+                <observers>
+                    <addXeroRateAdmin>
+                        <type>singleton</type>
+                        <class>Fooman_Connect_Model_Observer</class>
+                        <method>addXeroRate</method>
+                    </addXeroRateAdmin>
+                </observers>
+            </sales_convert_quote_item_to_order_item>
+        </events>
+        <menu>
+            <foomanconnect module="foomanconnect">
+                <title>Fooman Connect</title>
+                <sort_order>71</sort_order>
+                <children>
+                    <xero translate="title" module="foomanconnect">
+                        <title>Xero - Orders</title>
+                        <action>adminhtml/xero</action>
+                    </xero>
+                    <creditmemo translate="title" module="foomanconnect">
+                        <title>Xero - Credit Memos</title>
+                        <action>adminhtml/xero/creditmemo</action>
+                    </creditmemo>
+                </children>
+            </foomanconnect>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <foomanconnect>
+                            <title>Fooman Connect</title>
+                            <sort_order>10</sort_order>
+                            <children>
+                                <xero translate="title">
+                                    <title>Xero - Orders</title>
+                                </xero>
+                                <creditmemo translate="title">
+                                    <title>Xero - Credit Memos</title>
+                                </creditmemo>
+                            </children>
+                        </foomanconnect>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <foomanconnect>
+                                            <title>Fooman Connect</title>
+                                        </foomanconnect>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events></events>
+        <translate></translate>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <foomanconnect before="Mage_Adminhtml">Fooman_Connect_Adminhtml</foomanconnect>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <events>
+            <sales_convert_quote_item_to_order_item>
+                <observers>
+                    <addXeroRate>
+                        <type>singleton</type>
+                        <class>Fooman_Connect_Model_Observer</class>
+                        <method>addXeroRate</method>
+                    </addXeroRate>
+                </observers>
+            </sales_convert_quote_item_to_order_item>
+        </events>
+        <translate></translate>
+        <layout></layout>
+    </frontend>
+
+    <default>
+        <foomanconnect>
+            <settings>
+                <xeroenabled>0</xeroenabled>
+                <xeroautomatic>0</xeroautomatic>
+                <consumerkey/>
+                <consumersecret/>
+                <privatekey/>
+                <privatekeypassword/>
+                <xeroaccountcodesale>200</xeroaccountcodesale>
+                <xeroaccountcodeshipping>200</xeroaccountcodeshipping>
+                <xeroaccountcodediscounts>0</xeroaccountcodediscounts>
+                <xeroaccountcodesurcharge>200</xeroaccountcodesurcharge>
+                <xeroversion>nz</xeroversion>
+                <xerotracking></xerotracking>
+                <xeroexportzero>0</xeroexportzero>
+                <xeronumbering>0</xeronumbering>
+                <xerocreditnoteprefix>CN-</xerocreditnoteprefix>
+                <xerooverridetax>0</xerooverridetax>
+                <xerologenabled>1</xerologenabled>
+                <xeroenablereset>0</xeroenablereset>
+                <xerocreditmemostartdate/>
+                <xeroorderstartdate/>
+                <xeroorderstartdate/>
+            </settings>
+        </foomanconnect>
+    </default>
+    <crontab>
+        <jobs>
+            <foomanconnect_xero>
+                <schedule><cron_expr>*/5 * * * *</cron_expr></schedule>
+                <run><model>foomanconnect/xeroOauth::cron</model></run>
+            </foomanconnect_xero>
+            <connect_updates>
+                <schedule><cron_expr>* */8 * * *</cron_expr></schedule>
+                <run><model>foomanconnect/updates::checkUpdate</model></run>
+            </connect_updates>
+        </jobs>
+    </crontab>
+    <phpunit>
+        <suite>
+            <modules>
+                <Fooman_Connect />
+            </modules>
+        </suite>
+    </phpunit>
+</config>

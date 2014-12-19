@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageix LLC
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to Mageix LLC's  End User License Agreement
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://mageix.com/index.php/license-guide/
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to webmaster@mageix.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+
+ *
+ * @category	Mageix
+ * @package 	Mageix_Ixepp
+ * @copyright   Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @license	http://mageix.com/index.php/license-guide/  End User License Agreement
+ */
+
+/*
+ * Magento Mageix ICBA Module
+ *
+ * @category   Checkout & Payments
+ * @package	Mageix_Ixepp
+ * @copyright  Copyright (c) 2011 Mageix LLC (http://mageix.com)
+ * @designer & author  Brian Graham
+ * @co-author Rahul Sharma
+  *@licence 	http://mageix.com/index.php/license-guide/ 
+ */
+-->
+<layout version="0.1.0">
+<onestepcheckout_index_index>
+
+        <reference name="head">
+           <action method="addCss"><stylesheet>ixepp/jquery.lightbox.css</stylesheet></action>
+				<action method="addItem"><type>skin_css</type><name>ixepp/jquery.lightbox.ie6.css</name><params/><if>lt IE 7</if></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.min.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.lightbox.js</name><params/></action>
+				<action method="addCss"><stylesheet>ixepp/lightface.css</stylesheet></action>
+				<action method="addCss"><stylesheet>ixepp/style.css</stylesheet></action>
+				<action method="addJs"><script>ixepp/accordion.js</script></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/ixeppcheckout.js</name><params/></action>
+        </reference>
+		  </onestepcheckout_index_index>
+	<checkout_cart_index>
+			<reference name="checkout.cart.top_methods">
+			   <block type="ixepp/popup_link" name="ixepp.popup.top_links" template="ixepp/popup/link.phtml" before="-"/>
+			</reference>
+			<reference name="checkout.cart.methods">
+				<block type="ixepp/popup_link" name="ixepp.popup.top_links" template="ixepp/popup/link.phtml" before="-" />
+			</reference>
+			<reference name="head">
+				<action method="addCss"><stylesheet>ixepp/jquery.lightbox.css</stylesheet></action>
+				<action method="addItem"><type>skin_css</type><name>ixepp/jquery.lightbox.ie6.css</name><params/><if>lt IE 7</if></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.min.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.lightbox.js</name><params/></action>
+				<action method="addCss"><stylesheet>ixepp/lightface.css</stylesheet></action>
+				<action method="addCss"><stylesheet>ixepp/style.css</stylesheet></action>
+				<action method="addJs"><script>ixepp/accordion.js</script></action>
+				<action method="addItem"><type>skin_js</type><name>ixepp/js/ixeppcheckout.js</name><params/></action>
+			</reference>
+	</checkout_cart_index>
+	
+	<ixepp_empty_index translate="label">
+		<remove name="left"/>
+		<remove name="right"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/ixepp/popup.phtml</template></action>
+        </reference>
+		<reference name="content">
+            <block type="ixepp/popup" name="ixepp.empty" template="ixepp/empty.phtml" />
+		</reference>
+	</ixepp_empty_index>
+
+	<ixepp_popup_ordersuccess translate="label">
+		<remove name="left"/>
+		<remove name="right"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/popup.phtml</template></action>
+        </reference>
+		<reference name="content">
+            <block type="ixepp/popup_ordersuccess" name="ixepp.popup.ordersuccess" template="ixepp/ordersuccess.phtml" />
+		</reference>
+	</ixepp_popup_ordersuccess>
+
+	<ixepp_order_index translate="label">
+		<remove name="left"/>
+		<remove name="right"/>
+        <reference name="head">
+			<action method="addCss"><stylesheet>ixepp/lightface.css</stylesheet></action>
+			<action method="addCss"><stylesheet>ixepp/style.css</stylesheet></action>
+		</reference>
+		<reference name="root">
+            <action method="setTemplate"><template>page/ixepp/popup.phtml</template></action>
+        </reference>
+		<reference name="content">
+            <block type="ixepp/popup" name="ixepp.order" template="ixepp/order.phtml" />
+		</reference>
+	</ixepp_order_index>
+
+	<ixepp_failure_index translate="label">
+		<remove name="left"/>
+		<remove name="right"/>
+        <reference name="head">
+			<action method="addCss"><stylesheet>ixepp/lightface.css</stylesheet></action>
+			<action method="addCss"><stylesheet>ixepp/style.css</stylesheet></action>
+		</reference>
+		<reference name="root">
+            <action method="setTemplate"><template>page/ixepp/popup.phtml</template></action>
+        </reference>
+		<reference name="content">
+            <block type="ixepp/popup" name="ixepp.failure" template="ixepp/failure.phtml" />
+		</reference>
+	</ixepp_failure_index>
+
+	<ixepp_popup_index translate="label">
+        <label>Popup Checkout</label>
+        <!-- Mageix_IXEPP -->
+        <remove name="left"/>
+		<remove name="right"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/ixepp/popup.phtml</template></action>
+        </reference>
+		<reference name="head">
+			<action method="addCss"><stylesheet>ixepp/lightface.css</stylesheet></action>
+			<action method="addCss"><stylesheet>ixepp/style.css</stylesheet></action>
+			<action method="addJs"><script>ixepp/accordion.js</script></action>
+			<action method="addItem"><type>skin_js</type><name>ixepp/js/ixeppcheckout.js</name><params/></action>
+		</reference>
+        <reference name="content">
+            <block type="ixepp/popup" name="ixepp.popup" template="ixepp/popup/popup.phtml">				
+				<block type="ixepp/popup_orderitems" name="ixepp.popup.orderitems" as="orderitems" template="ixepp/popup/orderitems.phtml"/>
+                <block type="ixepp/popup_login" name="ixepp.popup.login" as="login" template="ixepp/popup/login.phtml">
+                    <block type="page/html_wrapper" name="ixepp.popup.login.before" as="login_before" translate="label">
+                        <label>Login/Registration Before</label>
+                        <action method="setMayBeInvisible"><value>1</value></action>
+                    </block>
+                </block>
+                <block type="ixepp/popup_billing" name="ixepp.popup.billing" as="billing" template="ixepp/popup/billing.phtml"/>
+                <block type="ixepp/popup_shipping" name="ixepp.popup.shipping" as="shipping" template="ixepp/popup/shipping.phtml"/>
+                <block type="ixepp/popup_shipping_method" name="ixepp.popup.shipping_method" as="shipping_method" template="ixepp/popup/shipping_method.phtml">
+                    <block type="ixepp/popup_shipping_method_available" name="ixepp.popup.shipping_method.available" as="available" template="ixepp/popup/shipping_method/available.phtml"/>
+                </block>
+                <block type="ixepp/popup_payment" name="ixepp.popup.payment" as="payment" template="ixepp/popup/payment.phtml">
+                    <block type="ixepp/popup_payment_methods" name="ixepp.payment.methods" as="methods" template="ixepp/popup/payment/methods.phtml">
+                        <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+                    </block>
+                </block>
+                <block type="ixepp/popup_review" name="ixepp.popup.review" as="review" template="ixepp/popup/review.phtml"/>
+            </block>
+        </reference>
+    </ixepp_popup_index>
+
+	<ixepp_popup_paymentmethod>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="ixepp/popup_payment_methods" name="root" output="toHtml" template="ixepp/popup/payment/methods.phtml">
+            <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+        </block>
+    </ixepp_popup_paymentmethod>
+
+	<ixepp_popup_shippingmethod>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="ixepp/popup_shipping_method_available" name="root" output="toHtml" template="ixepp/popup/shipping_method/available.phtml"/>
+    </ixepp_popup_shippingmethod>
+
+	<ixepp_popup_review translate="label">
+        <label>Ixepp Checkout Overview</label>
+        <remove name="right"/>
+        <remove name="left"/>
+
+        <block type="ixepp/popup_review_info" name="root" output="toHtml" template="ixepp/popup/review/info.phtml">
+            <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>ixepp/popup/review/item.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>ixepp/popup/review/item.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>ixepp/popup/review/item.phtml</template></action>
+            <block type="checkout/cart_totals" name="ixepp.popup.review.info.totals" as="totals" template="ixepp/popup/review/totals.phtml"/>
+            <block type="core/text_list" name="ixepp.popup.review.info.items.before" as="items_before" translate="label">
+                <label>Items Before</label>
+            </block>
+            <block type="core/text_list" name="ixepp.popup.review.info.items.after" as="items_after" translate="label">
+                <label>Items After</label>
+            </block>
+            <block type="ixepp/agreements" name="ixepp.popup.agreements" as="agreements" template="ixepp/popup/agreements.phtml"/>
+            <block type="core/template" name="ixepp.popup.review.button" as="button" template="ixepp/popup/review/button.phtml"/>
+        </block>
+    </ixepp_popup_review>
+	
+	<checkout_onepage_index>
+    	<reference name='head'>
+    		<action method="addCss"><stylesheet>ixepp/jquery.lightbox.css</stylesheet></action>
+			<action method="addItem"><type>skin_css</type><name>ixepp/jquery.lightbox.ie6.css</name><params/><if>lt IE 7</if></action>
+			<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.min.js</name><params/></action>
+			<action method="addItem"><type>skin_js</type><name>ixepp/js/jquery.lightbox.js</name><params/></action>
+    	</reference>
+		<reference name='checkout.onepage.payment'>
+			<action method='setTemplate'><template>ixepp/checkout/onepage/payment.phtml</template></action>
+		</reference>
+	</checkout_onepage_index>
+</layout>
